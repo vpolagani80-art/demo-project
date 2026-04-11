@@ -4,7 +4,9 @@ pipeline {
     tools {
         nodejs 'NodeJs'
     }
-
+     environment {
+        SONAR_TOKEN = credentials('SonarQube')
+    }
     stages {
 
         stage('Checkout Code') {
@@ -25,5 +27,12 @@ pipeline {
                 sh 'nohup npm start > app.log 2>&1 &'
             }
         }
-    }
-}
+           stage('SonarQube') {
+            steps {
+                 withSonarQubeEnv(credentialsId: 'jenkin2-access') 
+                      sh 'npm clean package sonar:sonar'
+
+                    }
+                }
+            }
+        }
