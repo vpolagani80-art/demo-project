@@ -2,14 +2,15 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJs'
+        nodejs 'NodeJS'
     }
 
     stages {
 
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                git 'git@github.com:vpolagani80-art/demo-project.git'
+                git branch: 'main',
+                    url: 'https://github.com/vpolagani80-art/demo-project.git'
             }
         }
 
@@ -21,10 +22,7 @@ pipeline {
 
         stage('Run App') {
             steps {
-                sh '''
-                pkill -f node || true
-                nohup npm start > app.log 2>&1 &
-                '''
+                sh 'nohup npm start > app.log 2>&1 &'
             }
         }
     }
