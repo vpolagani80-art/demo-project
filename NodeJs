@@ -27,14 +27,14 @@ pipeline {
        stage('Sonar Analysis') {
          steps {
            script {
-             def scannerHome = tool 'SonarScanner'   
+             def scannerHome = tool 'SonarScanner'
              withSonarQubeEnv('SonarQube') {
                 sh """
-                    ${scannerHome}/bin/sonar-scanner \
-                    -Dsonar.projectKey=nodejs-demo \
-                    -Dsonar.sources=. \
-                    -Dsonar.host.url="${SONAR_HOST_URL}" \
-                    -Dsonar.login="${SONAR_AUTH_TOKEN}"
+                ${scannerHome}/bin/sonar-scanner \
+                -Dsonar.projectKey=nodejs-demo \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=http://54.209.73.50:9000 \
+                -Dsonar.login=YOUR_TOKEN
                 """
             }
         }
