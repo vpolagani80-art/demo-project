@@ -29,10 +29,10 @@ pipeline {
               withSonarQubeEnv('SonarQube') {
                 sh '''
                 sonar-scanner \
-                -Dsonar.projectKey=nodejs \
+                -Dsonar.projectKey=nodejs-demo \
                 -Dsonar.sources=. \
-                -Dsonar.host.url=http://<98.93.156.204/>:9000 \
-                -Dsonar.login=<token>
+                -Dsonar.host.url=http://<54.209.73.50/>:9000 \
+                -Dsonar.login=<jenkin2-access>
                   '''
         }
     }
